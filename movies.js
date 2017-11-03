@@ -14,20 +14,20 @@ exports.movies = function(e, context, callback) {
 
 	if (e.httpMethod == 'GET') {
 		if (e.pathParameters.id) {
-			queryString.text = 'SELECT title, score FROM movie WHERE id=$1',
+			queryString.text = 'SELECT title, year, imdb FROM movies WHERE id=$1',
 			queryString.values.push(e.pathParameters.id);
 		} else {
-			queryString.text = 'SELECT * FROM movie WHERE id<25';
+			queryString.text = 'SELECT * FROM movies WHERE id<25';
 		}
 	} else if (e.httpMethod == 'POST'){
-		queryString.text = 'INSERT INTO movie(title, year, imdb) VALUES($1, $2, $3) RETURNING id';
+		queryString.text = 'INSERT INTO movies(title, year, imdb) VALUES($1, $2, $3) RETURNING id';
 		for (var key in e.body) {
 			if (e.body.hasOwnProperty(key)) {
 				queryString.values.push(e.body[key]);
 			}
 		}
 	} else if (e.httpMethod == 'DELETE') {
-		queryString.text = 'DELETE from movie WHERE id=$1';
+		queryString.text = 'DELETE from movies WHERE id=$1';
 		queryString.values.push(e.pathParameters.id);
 	}
 

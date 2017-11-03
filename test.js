@@ -15,7 +15,8 @@ const requestMockPost = {
   },
   body: {
     title: "Alice in Wonderland",
-    score: 7.2
+    year: 2010,
+    imdb: 7.2
   }
 };
 
@@ -32,12 +33,10 @@ const requestMockDELETE = {
   httpMethod : 'DELETE',
   pathParameters : {
     id : 4
-  },
-  body: {
   }
 };
 
 movies(requestMockGetList, null, console.log);
-// movies(requestMockPost,null,console.log);
-// movies(requestMockGetID,null,console.log);
+movies(requestMockPost,null,console.log);
+movies(requestMockGetID,null,console.log);
 // movies(requestMockDELETE,null,console.log);
